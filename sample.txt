@@ -1,0 +1,38 @@
+{
+	"contributors" : null,
+	"truncated" : false,
+	"text" : "Game of Thrones add Richard E. Grant to cast of season six - http://t.co/rRD3t18vjH http://t.co/ar3hW1nFkG",
+	"is_quote_status" : false,
+	"in_reply_to_status_id" : null,
+	"id" : NumberLong("641649054389137408"),
+	"favorite_count" : 0,
+	"source" : "<a href=\"http://dlvr.it\" rel=\"nofollow\">dlvr.it</a>",
+	"retweeted" : false,
+	"coordinates" : null,
+	"entities" : {
+		"symbols" : [ ],
+		"user_mentions" : [ ],
+		"hashtags" : [ ],
+		"urls" : [{"url" : "http://t.co/rRD3t18vjH",
+				"indices" : [61,83],
+				"expanded_url" : "http://Mirror.co.uk",
+				"display_url" : "Mirror.co.uk"}]
+	},
+	"in_reply_to_screen_name" : null,
+	"in_reply_to_user_id" : null,
+	"retweet_count" : 0,
+	"id_str" : "641649054389137408",
+	"favorited" : false,
+	"user" : {<userObjectData>},
+	"geo" : null,
+	"in_reply_to_user_id_str" : null,
+	"possibly_sensitive" : false,
+	"lang" : "en",
+	"created_at" : "Wed Sep 09 16:27:10 +0000 2015",
+	"in_reply_to_status_id_str" : null,
+	"place" : null,
+	"metadata" : {
+		"iso_language_code" : "en",
+		"result_type" : "recent"
+	}
+}
