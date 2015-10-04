@@ -1,0 +1,10 @@
+To get language tags mapping the following site was used:
+http://r12a.github.io/apps/subtags/
+
+The following code was executed in console:
+var = document.getElementsByClassName("st");
+for(i = 0; i<a.length; i++){console.log(a[i].innerHTML + "\t" + a[i].parentNode.innerText);}
+
+The console output is obtained in a file starting chrome with following command:
+google-chrome --enable-logging --v=1
+

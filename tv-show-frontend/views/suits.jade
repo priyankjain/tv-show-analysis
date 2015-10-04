@@ -138,4 +138,32 @@ html
 				div.col-xs-4
 					div#sentiment_others
 
-			
+			div.row
+				div.col-xs-6.table-responsive
+					h3: center Top 10 tweet sources
+					table.table.table-striped.table-bordered.table-condensed
+						- var n = 0
+						each source,i in source_stats
+							if i == 0
+								tr
+									th.info No.
+									th.active Tweet source
+									th.info Tweet count
+							tr
+								td.info= ++n
+								td.active #{source.source}
+								td.info #{source.source_count}
+				div.col-xs-6.table-responsive
+					h3: center Top 10 languages
+					table.table.table-striped.table-bordered.table-condensed
+						- var n = 0
+						each lang,i in lang_stats
+							if i == 0
+								tr
+									th.info No.
+									th.active Tweet language
+									th.info Tweet count
+							tr
+								td.info= ++n
+								td.active #{lang.lang}
+								td.info #{lang.lang_count}
