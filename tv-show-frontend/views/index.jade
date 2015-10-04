@@ -1,6 +1,28 @@
-extends layout
-
-block content
-  h1 Hello world
-  p Welcome to #{title}
-  a(href="./suits") Suits
+doctype html
+html
+	head
+		title= title
+		link(rel='stylesheet', href='/stylesheets/custom.css')
+		link(rel="stylesheet",href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css")
+		link(rel="stylesheet",href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css")
+		script(src="http://code.jquery.com/jquery-1.11.0.min.js")
+		script(src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js")
+	body
+		div.container
+			hr
+			div.row
+				div.col-xs-12
+					h2: center TV Show Analysis
+			hr
+			div.row
+				div.col-xs-6
+					center
+						h3= heading
+						a(href="/game-of-thrones")
+							img.img-responsive.img-rounded(src="images/GOT.jpg", width=500, height = 800,alt = 'Game Of Thrones - HBO', title = 'Game Of Thrones - HBO')
+				div.col-xs-6
+					center
+						h3= heading
+						a(href="/suits")
+							img.img-responsive.img-rounded(src="images/Suits.jpg", width=500, height = 800,alt = 'Suits - USA', title = 'Suits - USA')
+			hr

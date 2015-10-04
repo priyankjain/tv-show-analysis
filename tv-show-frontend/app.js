@@ -4,7 +4,7 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-
+var fs = require("fs");
 var routes = require('./routes/index');
 
 var app = express();
@@ -24,8 +24,20 @@ app.use(express.static(path.join(__dirname, 'public')));
 var mongo = require('mongodb');
 var monk = require('monk');
 var db = monk('localhost:27017/tvshows');
-
+var data = fs.readFileSync(path.join(__dirname, 'lang.map2'));
+data = data.toString();
+lines = data.split("\n");
+var lang_map = {};
+String.prototype.capitalize = function(lower) {
+    return (lower ? this.toLowerCase() : this).replace(/(?:^|\s)\S/g, function(a) { return a.toUpperCase(); });
+}
+for(i=0; i<lines.length; i++)
+{
+  words = lines[i].split('\t');
+  lang_map[words[1]] = words[0].capitalize();
+}
 app.use(function(req, res, next){
+  req.lang_map = lang_map;
   req.db = db;
   next();
 });

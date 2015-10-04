@@ -1,0 +1,185 @@
+doctype html
+html
+	head
+		title= title
+		link(rel='stylesheet', href='/stylesheets/custom.css')
+		link(rel="stylesheet",href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css")
+		link(rel="stylesheet",href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css")
+		script(src="http://code.jquery.com/jquery-1.11.0.min.js")
+		script(src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js")
+		script(type="text/javascript", src="https://www.google.com/jsapi")
+		script(type="text/javascript").
+			google.load('visualization', '1.0', {'packages':['corechart']});
+			google.setOnLoadCallback(drawCharts);
+			function drawCharts() 
+			{
+				drawSentimentChart();
+				drawGenderChart();
+				drawMaleSentimentChart();
+				drawFemaleSentimentChart();
+				drawOthersSentimentChart();
+			}
+			function drawSentimentChart()
+			{
+				var data = new google.visualization.DataTable();
+				data.addColumn('string', 'Sentiment');
+				data.addColumn('number', 'Count');
+				data.addRows([
+				['Positive', #{all_stats.pos_count}],
+				['Negative', #{all_stats.neg_count}],
+				['Neutral', #{all_stats.neu_count}]
+				]);
+				var options = {
+				'width':400,
+				'height':300};
+				var chart = new google.visualization.PieChart(document.getElementById('sentiment'));
+				chart.draw(data, options);
+			}
+			function drawGenderChart()
+			{
+				var data = new google.visualization.DataTable();
+				data.addColumn('string', 'Gender');
+				data.addColumn('number', 'Count');
+				data.addRows([
+				['Male', #{all_stats.male_count}],
+				['Female', #{all_stats.female_count}],
+				['Andyrogynous', #{all_stats.andy_count}]
+				]);
+				var options = {
+				'width':400,
+				'height':300};
+				var chart = new google.visualization.PieChart(document.getElementById('gender'));
+				chart.draw(data, options);
+			}
+			function drawMaleSentimentChart()
+			{
+				var data = new google.visualization.DataTable();
+				data.addColumn('string', 'Male-Sentiment');
+				data.addColumn('number', 'Count');
+				data.addRows([
+				['Positive', #{all_stats.male_pos_count}],
+				['Negative', #{all_stats.male_neg_count}],
+				['Neutral', #{all_stats.male_neu_count}]
+				]);
+				var options = {
+				'width':300,
+				'height':300};
+				var chart = new google.visualization.PieChart(document.getElementById('sentiment_male'));
+				chart.draw(data, options);
+			}
+			function drawFemaleSentimentChart()
+			{
+				var data = new google.visualization.DataTable();
+				data.addColumn('string', 'Female-Sentiment');
+				data.addColumn('number', 'Count');
+				data.addRows([
+				['Positive', #{all_stats.female_pos_count}],
+				['Negative', #{all_stats.female_neg_count}],
+				['Neutral', #{all_stats.female_neu_count}]
+				]);
+				var options = {
+				'width':300,
+				'height':300};
+				var chart = new google.visualization.PieChart(document.getElementById('sentiment_female'));
+				chart.draw(data, options);
+			}			
+			function drawOthersSentimentChart()
+			{
+				var data = new google.visualization.DataTable();
+				data.addColumn('string', 'Others-Sentiment');
+				data.addColumn('number', 'Count');
+				data.addRows([
+				['Positive', #{all_stats.andy_pos_count}],
+				['Negative', #{all_stats.andy_neg_count}],
+				['Neutral', #{all_stats.andy_neu_count}]
+				]);
+				var options = {
+				'width':300,
+				'height':300};
+				var chart = new google.visualization.PieChart(document.getElementById('sentiment_others'));
+				chart.draw(data, options);
+			}
+			$.fn.digits = function(){ 
+				return this.each(function(){ 
+					$(this).text( $(this).text().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,") ); 
+				})
+			}
+	body(onload="$('.num').digits();")
+		div.container
+			div.row
+				div.col-xs-6
+					center
+						h3= heading
+						img.img-responsive.img-rounded(src="images/#{image}", width=300, height = 300,alt = '#{heading}', title = '#{heading}')
+				div.col-xs-6
+					br
+					br
+					br
+					br
+					h3: center Popularity metrics
+					div.table-responsive
+						table.table.table-striped.table-bordered.table-condensed
+							tr
+								th.active
+									b Total Tweets
+								td.info.num #{all_stats.total_count}
+							tr
+								th.active
+									b Total Tweets Favorited
+								td.info.num #{all_stats.fav_count}
+							tr
+								th.active
+									b Total Reach
+								td.info.num #{all_stats.reach}
+			hr
+			div.row
+				div.col-xs-6
+					h3: center Sentiment Analysis
+					div#sentiment
+				div.col-xs-6
+					h3: center Gender Analysis
+					div#gender
+			hr
+			div.row
+				div.row
+					div.col-xs-12
+						h3: center Gender-wise Sentiment Analysis
+				div.col-xs-4
+					h3: center Male Sentiment Analysis
+					div#sentiment_male
+				div.col-xs-4
+					h3: center Female Sentiment Analysis
+					div#sentiment_female
+				div.col-xs-4
+					h3: center Others Sentiment Analysis
+					div#sentiment_others
+			hr
+			div.row
+				div.col-xs-6.table-responsive
+					h3: center Top 10 tweet sources
+					table.table.table-striped.table-bordered.table-condensed
+						- var n = 0
+						each source,i in source_stats
+							if i == 0
+								tr
+									th.info No.
+									th.active Tweet source
+									th.info Tweet count
+							tr
+								td.info= ++n
+								td.active #{source.source}
+								td.info.num #{source.source_count}
+				div.col-xs-6.table-responsive
+					h3: center Top 10 languages
+					table.table.table-striped.table-bordered.table-condensed
+						- var n = 0
+						each lang,i in lang_stats
+							if i == 0
+								tr
+									th.info No.
+									th.active Tweet language
+									th.info Tweet count
+							tr
+								td.info= ++n
+								td.active #{lang.lang}
+								td.info.num #{lang.lang_count}
