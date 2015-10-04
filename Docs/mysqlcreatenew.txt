@@ -1,0 +1,55 @@
+create database twitter;
+use twitter;
+create table tvshow(
+name varchar(100),
+time_start_created timestamp,
+time_start_inserted timestamp,
+total_tweets long,
+sent_pos_count long,
+sent_neg_count long,
+sent_neu_count long,
+gend_male_count long,
+gend_female_count long,
+male_pos_count long,
+male_neg_count long,
+male_neu_count long,
+female_pos_count long,
+female_neg_count long,
+female_neu_count long,
+fav_count long,
+retweet_count long,
+device_mobile_count long,
+device_pc_count long,
+primary key(name, time_start_created, time_start_inserted));
+
+create table tvcharacter(
+name varchar(100),
+time_start_created timestamp,
+time_start_inserted timestamp,
+total_tweets long,
+sent_pos_count long,
+sent_neg_count long,
+sent_neu_count long,
+gend_male_count long,
+gend_female_count long,
+male_pos_count long,
+male_neg_count long,
+male_neu_count long,
+female_pos_count long,
+female_neg_count long,
+female_neu_count long,
+fav_count long,
+retweet_count long,
+device_mobile_count long,
+device_pc_count long,
+primary key(name, time_start_created, time_start_inserted));
+
+create table show_character(
+show_name varchar(100),
+character_name varchar(100),
+primary key(show_name, character_name));
+
+create table latest_time(
+time_id int,
+time_start timestamp,
+primary key(time_id));

@@ -1,0 +1,7 @@
+android:["android","ifttt","tvshow time"]
+ios:["ifttt","tvshow time","iphone","ipad","bad kitty","twitterrific",ios]
+web:["web","dlvr.it","google","wordpress","betaseries","facebook"]
+windows phone:["windows phone"]
+mobile:["mobile web","hootsuite"]
+all:["hootsuite","tweetdeck","buffer","roundteam","tumblr","vine","path"]
+xbox:["trueachievements"]
